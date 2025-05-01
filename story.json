@@ -1,0 +1,447 @@
+{
+  "gameTitle": "Похищенная душа",
+  "gameVersion": "1.6",
+  "narrationStyle": "first_person",
+  "characters": {
+    "fatima.png": {
+      "name": "Я (Фатима)",
+      "description": "21 год. Люблю рисовать и мечтать о путешествиях. Теперь моя жизнь превратилась в кошмар..."
+    },
+    "attila.png": {
+      "name": "Атилла",
+      "description": "Однокурсник. Раньше казался просто странным, но теперь его глаза горят безумием."
+    },
+    "allahverdi.png": {
+      "name": "Аллахверди",
+      "description": "Тихий парень из параллельного класса. Помню, он дарил мне цветы на 8 марта в 9 классе..."
+    },
+    "leyla.png": {
+      "name": "Лейла",
+      "description": "Моя лучшая подруга. Где она сейчас? Наверное, ищет меня..."
+    },
+    "rauf.png": {
+      "name": "Рауф",
+      "description": "Старший брат Лейлы. Всегда знал, как решать 'сложные вопросы'."
+    },
+    "madina.png": {
+      "name": "Мадина",
+      "description": "Сестра Атиллы. Кажется, единственная, кто может его контролировать. Но чью сторону она выбрала?"
+    }
+  },
+  "scenes": [
+    {
+      "id": "awakening",
+      "title": "Пробуждение",
+      "text": "Голова раскалывается... Где я? Душный салон машины, трясёт на ухабах. В горле пересохло. Поворачиваю голову и вижу его — Атиллу за рулём. 'Проснулась, ласточка?' — его голос заставляет мурашки бежать по спине.",
+      "background": "car.png",
+      "character": "attila.png",
+      "nextScene": "first_choice"
+    },
+    {
+      "id": "first_choice",
+      "title": "Первое решение",
+      "text": "Он бормочет что-то о любви, о том, что 'мы созданы друг для друга'. Его пальцы нервно барабанят по рулю. Сердце бешено колотится. Нужно действовать сейчас!",
+      "background": "car.png",
+      "character": "attila.png",
+      "choices": [
+        {
+          "id": "scream",
+          "text": "КРИЧАТЬ! Бить кулаками в стекло",
+          "thoughts": "Может, кто-то услышит? Хотя вокруг темно и пусто...",
+          "consequences": {
+            "adrenaline": 3,
+            "hope": 1,
+            "courage": 2
+          },
+          "nextScene": "violent_reaction"
+        },
+        {
+          "id": "attack",
+          "text": "Резко дернуть за руль",
+          "thoughts": "Если разобьёмся, я хотя бы смогу убежать...",
+          "consequences": {
+            "anger": 3,
+            "pain": 1,
+            "faith": 2,
+            "courage": 4
+          },
+          "nextScene": "car_crash"
+        },
+        {
+          "id": "pretend",
+          "text": "Притвориться покорной",
+          "thoughts": "Нужно время, чтобы придумать план...",
+          "consequences": {
+            "cunning": 2,
+            "fear": 2
+          },
+          "nextScene": "safe_house_arrival"
+        }
+      ]
+    },
+    {
+      "id": "violent_reaction",
+      "title": "Жесткий ответ",
+      "text": "'Закрой рот!' — Атилла бьёт меня по лицу. В ушах звенит, во рту вкус крови. Машина резко сворачивает на обочину. 'Тебе нравится, когда больно? Я могу сделать хуже...'",
+      "background": "car.png",
+      "character": "attila.png",
+      "consequences": {
+        "anger": 2
+      },
+      "nextScene": "safe_house_arrival"
+    },
+    {
+      "id": "car_crash",
+      "title": "Авария",
+      "text": "Машина резко дергается в сторону, вылетает на обочину и врезается в дерево. Атилла теряет управление. Голова кружится, но я должна бежать, пока он без сознания...",
+      "background": "les.png",
+      "character": "fatima.png",
+      "nextScene": "escape_attempt"
+    },
+    {
+      "id": "escape_attempt",
+      "title": "Попытка побега",
+      "text": "Выбираюсь из разбитой машины. Темный лес, ни души вокруг. Бегу куда глаза глядят, но вдруг слышу за спиной его голос: 'Куда ты, дурочка?!' Он догоняет меня...",
+      "background": "les.png",
+      "character": "attila.png",
+      "consequences": {
+        "courage": 2
+      },
+      "nextScene": "safe_house_arrival"
+    },
+    {
+      "id": "safe_house_arrival",
+      "title": "Логово",
+      "text": "Старый дачный дом. Скрип дверей. Запах плесени. Атилла толкает меня в комнату с зарешеченным окном. 'Здесь ты научишься любить меня', — шепчет он. Вдруг шаги... В дверях появляется Аллахверди. Его глаза полны ужаса.",
+      "background": "home.png",
+      "character": "allahverdi.png",
+      "nextScene": "allahverdi_choice"
+    },
+    {
+      "id": "allahverdi_choice",
+      "title": "Молчаливый диалог",
+      "text": "Наши взгляды встречаются. В его глазах я вижу то, что не видела раньше — боль и решимость. Он может стать моим спасением... или ещё одним тюремщиком.",
+      "background": "basement.png",
+      "character": "allahverdi.png",
+      "choices": [
+        {
+          "id": "beg",
+          "text": "Молча смотреть, умоляя о помощи",
+          "thoughts": "Он же помнит меня... помнит наши школьные дни...",
+          "consequences": {
+            "compassion": 3
+          },
+          "nextScene": "secret_help"
+        },
+        {
+          "id": "reject",
+          "text": "Обвинить его: 'Ты такой же маньяк!'",
+          "thoughts": "Если он действительно хороший — докажет это!",
+          "consequences": {
+            "guilt": 1,
+            "faith": 3,
+            "courage": 3,
+            "anger": 3
+          },
+          "nextScene": "allahverdi_conflict"
+        },
+        {
+          "id": "madina_option",
+          "text": "Спросить про Мадину",
+          "thoughts": "Его сестра... может быть, она поможет?",
+          "consequences": {
+            "hope": 2,
+            "cunning": 2
+          },
+          "nextScene": "madina_reveal"
+        }
+      ]
+    },
+    {
+      "id": "madina_reveal",
+      "title": "Тень сестры",
+      "text": "При упоминании Мадины Аллахверди меняется в лице. 'Она... она не такая, как он', — шепчет он. 'Но будь осторожна — она любит своего брата...'",
+      "background": "dark_corridor.png",
+      "character": "allahverdi.png",
+      "nextScene": "waiting_period"
+    },
+    {
+      "id": "secret_help",
+      "title": "Тайная помощь",
+      "text": "Аллахверди незаметно суёт мне в руку записку, когда Атилла отвернулся. 'Лейла знает. Жди сигнала', — написано дрожащим почерком. Сердце замирает от надежды...",
+      "background": "basement.png",
+      "character": "allahverdi.png",
+      "nextScene": "leyla_rescue"
+    },
+    {
+      "id": "leyla_rescue",
+      "title": "Зов дружбы",
+      "text": "Ночью в окно стучит камешек. Лейла! Она шепчет: 'Рауф ждёт в машине за домом. Бежим сейчас!' Атилла спит в соседней комнате...",
+      "background": "basement.png",
+      "character": "leyla.png",
+      "choices": [
+        {
+          "id": "go_with_leyla",
+          "text": "Вылезти через окно",
+          "nextScene": "ending_leyla_reunion"
+        },
+        {
+          "id": "stay_for_allahverdi",
+          "text": "Предупредить Аллахверди",
+          "nextScene": "allahverdi_sacrifice"
+        }
+      ]
+    },
+    {
+      "id": "allahverdi_sacrifice",
+      "title": "Последний шанс",
+      "text": "Аллахверди качает головой: 'Я задержу Атиллу. Бегите!' Лейла тянет меня к машине. Сзади раздаётся крик и звук удара...",
+      "background": "garden.png",
+      "character": "leyla.png",
+      "nextScene": "ending_leyla_reunion"
+    },
+    {
+      "id": "allahverdi_conflict",
+      "title": "Конфликт",
+      "text": "Аллахверди бледнеет от моих слов. 'Ты действительно так думаешь?' — шепчет он. Атилла смеётся: 'Видишь? Она ненавидит всех нас!'",
+      "background": "basement.png",
+      "character": "attila.png",
+      "nextScene": "punishment"
+    },
+    {
+      "id": "punishment",
+      "title": "Наказание",
+      "text": "Атилла решает, что я должна быть наказана за 'непослушание'. Он приковывает меня к батарее на целые сутки без еды и воды. Аллахверди украдкой приносит мне стакан воды, но его глаза полны отчаяния...",
+      "background": "basement.png",
+      "character": "attila.png",
+      "consequences": {
+        "anger": 3,
+        "courage": 1
+      },
+      "nextScene": "wedding_preparations"
+    },
+    {
+      "id": "waiting_period",
+      "title": "Томительное ожидание",
+      "text": "Проходит три дня. Атилла объявляет, что наша 'свадьба' состоится через неделю. Каждую ночь я слышу, как под окном кто-то ходит... Может быть, это Лейла?",
+      "background": "basement.png",
+      "character": "fatima.png",
+      "nextScene": "wedding_preparations"
+    },
+    {
+      "id": "wedding_preparations",
+      "title": "Подготовка к свадьбе",
+      "text": "Атилла привозит белое платье. 'Через два дня ты станешь моей женой', — говорит он, поглаживая нож у меня на глазах. В его взгляде — безумие и одержимость.",
+      "background": "wedding.png",
+      "character": "attila.png",
+      "nextScene": "wedding_escape"
+    },
+    {
+      "id": "wedding_escape",
+      "title": "Свадебный побег",
+      "text": "В день 'свадьбы' Атилла сияет. Внезапно свет гаснет. Чьи-то руки хватают меня за запястье — это Аллахверди! 'Бежим сейчас!' — его шёпот полон отчаяния. За спиной слышны крики Атиллы...",
+      "background": "wedding.png",
+      "character": "allahverdi.png",
+      "choices": [
+        {
+          "id": "trust",
+          "text": "Довериться и бежать с ним",
+          "thoughts": "Это мой последний шанс...",
+          "consequences": {
+            "faith": 3,
+            "compassion": 2
+          },
+          "nextScene": "final_escape"
+        },
+        {
+          "id": "fight",
+          "text": "Укусить за руку и бежать одной",
+          "thoughts": "Я больше не верю никому!",
+          "consequences": {
+            "betrayal": 2,
+            "courage": 4
+          },
+          "nextScene": "tragic_end"
+        },
+        {
+          "id": "madina_help",
+          "text": "Кричать Мадине о помощи",
+          "thoughts": "Она последняя надежда...",
+          "consequences": {
+            "desperation": 3,
+            "hope": 2
+          },
+          "nextScene": "madina_intervention"
+        }
+      ]
+    },
+    {
+      "id": "madina_intervention",
+      "title": "Сестринский выбор",
+      "text": "Мадина появляется как призрак в дверном проеме. 'Остановись, брат...', — её голос дрожит. Атилла замирает. В её руке блестит пистолет. 'Я не позволю тебе это сделать...'",
+      "background": "dark_corridor.png",
+      "character": "madina.png",
+      "choices": [
+        {
+          "id": "accept_madina",
+          "text": "Принять её помощь",
+          "nextScene": "ending_madina_sacrifice"
+        },
+        {
+          "id": "escape_alone",
+          "text": "Использовать момент и бежать",
+          "nextScene": "ending_betrayal"
+        },
+        {
+          "id": "attack_attila",
+          "text": "Схватить нож и ударить Атиллу",
+          "nextScene": "ending_secret",
+          "condition": {
+            "minCourage": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "final_escape",
+      "title": "Последний рывок",
+      "text": "Мы мчимся через лес к машине Рауфа. Атилла бежит за нами с пистолетом. Аллахверди толкает меня в машину: 'Езжай без меня!' — и разворачивается к преследователю...",
+      "background": "les.png",
+      "character": "rauf.png",
+      "nextScene": "rauf_choice"
+    },
+    {
+      "id": "rauf_choice",
+      "title": "Тень прошлого",
+      "text": "Рауф молча ведёт машину. Его пальцы сжимают руль так, что костяшки белеют. 'Ты в безопасности... пока со мной', — вдруг говорит он. В его глазах мелькает что-то тревожное...",
+      "background": "night.png",
+      "character": "rauf.png",
+      "choices": [
+        {
+          "id": "trust_rauf",
+          "text": "Поблагодарить и попрощаться",
+          "nextScene": "ending_good"
+        },
+        {
+          "id": "stay_with_rauf",
+          "text": "Принять его помощь",
+          "nextScene": "ending_rauf_obsession"
+        }
+      ]
+    },
+    {
+      "id": "tragic_end",
+      "title": "Роковое решение",
+      "text": "Вырываюсь и бегу в темноту. Но лес слишком густой, я быстро теряю ориентацию. Вдруг передо мной возникает Атилла... 'Я же говорил — ты никуда не убежишь', — шепчет он, доставая верёвку...",
+      "background": "home.png",
+      "character": "attila.png",
+      "nextScene": "ending_bad"
+    }
+  ],
+  "endings": [
+    {
+      "id": "ending_good",
+      "title": "Новая жизнь",
+      "description": "Вы смогли сбежать с помощью друзей",
+      "background": "kafe.png",
+      "text": "Прошёл год. Я живу под чужим именем, в чужом городе, но впервые чувствую, что это моё место. Сегодня мне пришло письмо: Аллахверди выжил. Атилла — за решёткой. Я смотрю в окно на мокрый асфальт и впервые за долгое время позволяю себе по-настоящему улыбнуться. Я — жива.",
+      "characters": ["fatima.png"]
+    },
+    {
+      "id": "ending_bad",
+      "title": "Волны забвения",
+      "description": "Побег не удался",
+      "background": "waves.png",
+      "text": "Последнее, что я чувствую — холод солёной воды. Атилла сжимает верёвку, будто обнимает. «Теперь мы будем вместе навеки», — шепчет он, и его голос растворяется, как всё вокруг. Темнота накрывает меня, мягко и окончательно.",
+      "characters": ["attila.png"]
+    },
+    {
+      "id": "ending_secret",
+      "title": "Месть",
+      "description": "Вы решили бороться до конца",
+      "background": "blood.png",
+      "text": "Нож дрожит в моей руке. Атилла без сознания, дыхание тяжёлое. «Прости», — шепчу я, вспоминая каждую боль, каждую рану. Выстрел глохнет в подушке, приглушённый, но в ушах всё равно звенит. Свобода. Горькая, хрупкая… но моя.",
+      "characters": ["fatima.png"],
+      "unlockCondition": {
+        "choices": ["attack", "reject", "fight"],
+        "minCourage": 4
+      }
+    },
+    {
+      "id": "ending_madina_sacrifice",
+      "title": "Цена сестринской любви",
+      "description": "Мадина приняла вашу сторону",
+      "background": "hospital.png",
+      "text": "Полицейские сирены гудят за окном. Я лежу под капельницей, а Лейла сидит рядом. «Мадина… выстрелила в брата, чтобы спасти тебя», — шепчет она. Я сжимаю простыню. «Он выжил, но для неё — она предатель». А я — жива. За это она заплатила. За это я обязана ей всем.",
+      "characters": ["madina.png", "leyla.png"]
+    },
+    {
+      "id": "ending_betrayal",
+      "title": "Бегство в одиночку",
+      "description": "Вы сбежали, оставив Мадину",
+      "background": "police.png",
+      "text": "Я сижу за стеклом в полицейском участке. В соседней комнате допрашивают Мадину. «Она стреляла в своего брата», — монотонно говорит следователь. Я отвожу взгляд. Я воспользовалась её доверием, её любовью. А теперь… теперь она платит за мой выбор.",
+      "characters": ["madina.png"],
+      "morality": -2
+    },
+    {
+      "id": "ending_all_die",
+      "title": "Пепел",
+      "description": "Никто не выжил",
+      "background": "burn.png",
+      "text": "Передо мной — чёрные, обугленные руины. Пожар забрал их всех: Атиллу, Мадину. Лейла молчит, Рауф исчез. Только я знаю, как хрустнула спичка в моих пальцах. Только я знаю, зачем нужно было зажечь этот огонь.",
+      "characters": ["fatima.png"],
+      "isDark": true,
+      "unlockCondition": {
+        "choices": ["attack", "reject"],
+        "minAnger": 3
+      }
+    },
+    {
+      "id": "ending_allahverdi_love",
+      "title": "Неожиданный союз",
+      "description": "Вы остались с Аллахверди",
+      "background": "kafe.png",
+      "text": "Прошло пять лет. Мы сидим с Аллахверди в кафе у окна. Он всё так же вздрагивает, когда где-то гремит мотоцикл. Я рисую в блокноте. Иногда ночью мне кажется, что за стеклом стоит тень… высокая, знакомая. Но, наверное, это просто тень. Правда?",
+      "characters": ["allahverdi.png", "fatima.png"],
+      "unlockCondition": {
+        "choices": ["beg", "trust"],
+        "minCompassion": 2
+      }
+    },
+    {
+      "id": "ending_rauf_obsession",
+      "title": "Новые цепи",
+      "description": "Вы остались с Рауфом",
+      "background": "apartment.png",
+      "text": "Прошло три года. «Я не такой, как он», — шепчет он, обнимая меня. Я улыбаюсь… чтобы не плакать.",
+      "characters": ["rauf.png"],
+      "isDark": true,
+      "unlockCondition": {
+        "choices": ["stay_with_rauf"],
+        "minFear": 2
+      }
+    },
+    {
+      "id": "ending_leyla_reunion",
+      "title": "Старые друзья",
+      "description": "Лейла спасла вас",
+      "background": "safehouse.png",
+      "text": "Мы сидим с Лейлой на кухне её квартиры. «Аллахверди выжил, но ему нужно скрываться», — говорит она. Рауф кивает, взгляд тяжёлый. Я пью чай и думаю: я в безопасности. Но ночью мне всё равно слышится голос. Голос, зовущий по имени.",
+      "characters": ["leyla.png", "rauf.png"]
+    },
+    {
+      "id": "ending_attila_love",
+      "title": "Стокгольмский синдром",
+      "description": "Вы остались с Атиллой",
+      "background": "burn.png",
+      "text": "Он называет это любовью. Я — привычкой. Иногда я смотрю в зеркало и не узнаю отражение. А он улыбается: «Ты наконец стала моей». Я улыбаюсь в ответ. Улыбка — тоже привычка.",
+      "characters": ["attila.png", "fatima.png"],
+      "isDark": true,
+      "unlockCondition": {
+        "choices": ["pretend"],
+        "minFear": 3
+      }
+    }
+  ]
+}

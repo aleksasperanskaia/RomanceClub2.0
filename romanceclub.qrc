@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>story.json</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>backgrounds/car.png</file>
+        <file>backgrounds/wedding.png</file>
+        <file>backgrounds/welcome.png</file>
+        <file>characters/allahverdi.png</file>
+        <file>characters/attila.png</file>
+        <file>characters/fatima.png</file>
+        <file>characters/leyla.png</file>
+        <file>characters/rauf.png</file>
+        <file>backgrounds/waves.png</file>
+        <file>backgrounds/home.png</file>
+        <file>backgrounds/les.png</file>
+        <file>backgrounds/kafe.png</file>
+        <file>backgrounds/apartment.png</file>
+        <file>backgrounds/ashes.png</file>
+        <file>backgrounds/basement.png</file>
+        <file>backgrounds/blood.png</file>
+        <file>backgrounds/burn.png</file>
+        <file>backgrounds/dark_corridor.png</file>
+        <file>backgrounds/ending.png</file>
+        <file>backgrounds/garden.png</file>
+        <file>backgrounds/hospital.png</file>
+        <file>backgrounds/night.png</file>
+        <file>backgrounds/police.png</file>
+        <file>backgrounds/safehouse.png</file>
+        <file>backgrounds/storage_room.png</file>
+        <file>backgrounds/street.png</file>
+        <file>characters/madina.png</file>
+    </qresource>
+    <qresource prefix="/music">
+        <file>music/background.mp3</file>
+    </qresource>
+</RCC>
