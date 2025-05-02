@@ -62,8 +62,18 @@ void RomanceClub::setupAudio()
     if (QFile::exists(checkPath)) {
         qDebug() << "Аудиофайл найден по пути:" << checkPath;
 
+        if (QMediaPlayer::hasSupport("audio/mpeg") == QMultimedia::NotSupported) {
+            qDebug() << "Воспроизведение аудио не поддерживается на этой платформе";
+            return;
+        }
+
         mediaPlayer->setMedia(QUrl(audioPath));
         mediaPlayer->setVolume(50);
+
+        connect(mediaPlayer, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error),
+                this, [](QMediaPlayer::Error error) {
+                    qDebug() << "Ошибка медиаплеера:" << error;
+                });
 
         connect(mediaPlayer, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State state) {
             if (state == QMediaPlayer::StoppedState) {
@@ -72,14 +82,9 @@ void RomanceClub::setupAudio()
         });
 
         mediaPlayer->play();
-
-        if (mediaPlayer->error() != QMediaPlayer::NoError) {
-            qDebug() << "Ошибка воспроизведения:" << mediaPlayer->errorString();
-        }
     } else {
         qDebug() << "Файл не найден! Проверьте:";
         qDebug() << "Ожидаемый путь в ресурсах:" << checkPath;
-        qDebug() << "Физический путь в проекте: music/background.mp3";
     }
 }
 
