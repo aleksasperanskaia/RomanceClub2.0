@@ -12,6 +12,7 @@
 #include <QDir>
 #include <QScrollArea>
 #include <QApplication>
+#include <QMediaPlayer>
 
 RomanceClub::RomanceClub(QWidget *parent) : QMainWindow(parent)
 {
@@ -57,33 +58,21 @@ RomanceClub::RomanceClub(QWidget *parent) : QMainWindow(parent)
 void RomanceClub::setupAudio()
 {
     mediaPlayer = new QMediaPlayer(this);
-    audioOutput = new QAudioOutput(this);
-    mediaPlayer->setAudioOutput(audioOutput);
+    mediaPlayer->setMedia(QUrl("qrc:/music/background.mp3"));
+    mediaPlayer->setVolume(50);
 
-    // Установка источника музыки (добавьте ваш музыкальный файл в ресурсы)
-    mediaPlayer->setSource(QUrl("qrc:/music/background_music.mp3"));
+    // Бесконечное повторение
+    connect(mediaPlayer, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State state) {
+        if (state == QMediaPlayer::StoppedState) {
+            mediaPlayer->play();
+        }
+    });
 
-    // Настройка громкости (0-100)
-    audioOutput->setVolume(50);
-
-    // Включение бесконечного повторения
-    mediaPlayer->setLoops(QMediaPlayer::Infinite);
-
-    // Воспроизведение музыки
     mediaPlayer->play();
 }
 
 void RomanceClub::setupWelcomeScreen()
 {
-    QPushButton *musicToggleButton = new QPushButton("Музыка Вкл/Выкл");
-    connect(musicToggleButton, &QPushButton::clicked, this, [this]() {
-        if (mediaPlayer->playbackState() == QMediaPlayer::PlayingState) {
-            mediaPlayer->pause();
-        } else {
-            mediaPlayer->play();
-        }
-    });
-
     welcomeScreen = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout(welcomeScreen);
 
@@ -122,7 +111,6 @@ void RomanceClub::setupWelcomeScreen()
     connect(startButton, &QPushButton::clicked, this, &RomanceClub::startGame);
 
     layout->addWidget(titleLabel);
-    layout->addWidget(musicToggleButton, 0, Qt::AlignCenter);
     layout->addWidget(welcomeImage);
     layout->addWidget(startButton, 0, Qt::AlignCenter);
     layout->setContentsMargins(50, 50, 50, 50);
@@ -524,19 +512,19 @@ void RomanceClub::showEnding(const QJsonObject& ending)
     QString endingMessage = ending["text"].toString();
 
     // Формирование текста о выборе игрока
-    QString playerChoiceMessage = "Ваш выбор:\n";
-    if (madeChoices.contains("attack")) {
-        playerChoiceMessage += "Путь нападения.\n";
-    }
-    if (madeChoices.contains("reject")) {
-        playerChoiceMessage += "Вы отвергли предложение.\n";
-    }
-    if (madeChoices.contains("fight")) {
-        playerChoiceMessage += "Вы приняли бой.\n";
-    }
+    //QString playerChoiceMessage = "Ваш выбор:\n";
+    //if (madeChoices.contains("attack")) {
+       // playerChoiceMessage += "Путь нападения.\n";
+   // }
+    //if (madeChoices.contains("reject")) {
+      //  playerChoiceMessage += "Вы отвергли предложение.\n";
+    //}
+   // if (madeChoices.contains("fight")) {
+       // playerChoiceMessage += "Вы приняли бой.\n";
+    //}
 
     // Добавляем этот текст в основное сообщение концовки
-    endingMessage += "\n" + playerChoiceMessage;
+    //endingMessage += "\n" + playerChoiceMessage;
 
     // Добавляем финальное сообщение, в зависимости от концовки
     if (ending["id"].toString() == "ending_good") {
@@ -601,9 +589,11 @@ void RomanceClub::restartGame()
     stack->setCurrentWidget(welcomeScreen);
 }
 
+
 RomanceClub::~RomanceClub()
 {
     if (mediaPlayer) {
-        mediaPlayer->stop();
+         mediaPlayer->stop();
+          delete mediaPlayer;
     }
 }
