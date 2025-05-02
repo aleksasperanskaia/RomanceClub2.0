@@ -16,7 +16,6 @@
 
 RomanceClub::RomanceClub(QWidget *parent) : QMainWindow(parent)
 {
-    // Инициализация карты персонажей
     characterImages = {
         {"fatima.png", ":/images/characters/fatima.png"},
         {"attila.png", ":/images/characters/attila.png"},
@@ -26,7 +25,6 @@ RomanceClub::RomanceClub(QWidget *parent) : QMainWindow(parent)
         {"rauf.png", ":/images/characters/rauf.png"}
     };
 
-    // Инициализация статистики
     stats = {
         {"adrenaline", 0},
         {"hope", 0},
@@ -61,7 +59,6 @@ void RomanceClub::setupAudio()
     mediaPlayer->setMedia(QUrl(":/music/music/background.mp3"));
     mediaPlayer->setVolume(50);
 
-    // Бесконечное повторение
     connect(mediaPlayer, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State state) {
         if (state == QMediaPlayer::StoppedState) {
             mediaPlayer->play();
@@ -335,7 +332,6 @@ void RomanceClub::showNextScene()
         return;
     }
 
-    // Обработка финальной сцены
     if (currentSceneId.startsWith("ending_")) {
         QJsonObject ending;
         for (const QJsonValue& value : endings) {
@@ -359,7 +355,6 @@ void RomanceClub::showNextScene()
         return;
     }
 
-    // Установка фона
     QString bgPath = ":/images/backgrounds/" + scene["background"].toString();
     QPixmap bgPix(bgPath);
     if (bgPix.isNull()) {
@@ -369,7 +364,6 @@ void RomanceClub::showNextScene()
     }
     backgroundLabel->setPixmap(bgPix.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation));
 
-    // Установка персонажа
     if (scene.contains("character")) {
         QString charName = scene["character"].toString();
         if (characterImages.contains(charName)) {
@@ -386,17 +380,14 @@ void RomanceClub::showNextScene()
         characterLabel->hide();
     }
 
-    // Установка текста
     textLabel->setText(scene["text"].toString());
 
-    // Очистка предыдущих выборов
     QLayoutItem* item;
     while ((item = choicesLayout->takeAt(0))) {
         delete item->widget();
         delete item;
     }
 
-    // Обработка вариантов выбора
     if (scene.contains("choices")) {
         QJsonArray choices = scene["choices"].toArray();
         qDebug() << "Создание кнопок:" << choices.size();
@@ -440,7 +431,6 @@ void RomanceClub::showNextScene()
 
                 currentSceneId = choice["nextScene"].toString();
 
-                // Проверка условий для секретной концовки
                 if (currentSceneId == "tragic_end") {
                     QStringList requiredChoices = {"attack", "reject", "fight"};
                     bool allMatched = std::all_of(requiredChoices.begin(), requiredChoices.end(),
@@ -458,7 +448,7 @@ void RomanceClub::showNextScene()
         }
 
     } else if (scene.contains("nextScene")) {
-        // Одинарная сцена без выбора
+        
         QPushButton* continueBtn = new QPushButton("Продолжить...");
         continueBtn->setStyleSheet(
             "QPushButton {"
@@ -476,7 +466,6 @@ void RomanceClub::showNextScene()
         connect(continueBtn, &QPushButton::clicked, this, [this, scene]() {
             currentSceneId = scene["nextScene"].toString();
 
-            // Проверка условий для секретной концовки
             if (currentSceneId == "tragic_end") {
                 QStringList requiredChoices = {"attack", "reject", "fight"};
                 bool allMatched = std::all_of(requiredChoices.begin(), requiredChoices.end(),
@@ -507,26 +496,8 @@ void RomanceClub::showEnding(const QJsonObject& ending)
     endingBackground->setPixmap(endPix.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation));
 
     endingTitle->setText(ending["title"].toString());
-
-    // Основное сообщение концовки
     QString endingMessage = ending["text"].toString();
 
-    // Формирование текста о выборе игрока
-    //QString playerChoiceMessage = "Ваш выбор:\n";
-    //if (madeChoices.contains("attack")) {
-       // playerChoiceMessage += "Путь нападения.\n";
-   // }
-    //if (madeChoices.contains("reject")) {
-      //  playerChoiceMessage += "Вы отвергли предложение.\n";
-    //}
-   // if (madeChoices.contains("fight")) {
-       // playerChoiceMessage += "Вы приняли бой.\n";
-    //}
-
-    // Добавляем этот текст в основное сообщение концовки
-    //endingMessage += "\n" + playerChoiceMessage;
-
-    // Добавляем финальное сообщение, в зависимости от концовки
     if (ending["id"].toString() == "ending_good") {
         endingMessage += "\nПоздравляем, вы обрели счастье! ❤️";
     }
@@ -537,10 +508,8 @@ void RomanceClub::showEnding(const QJsonObject& ending)
         endingMessage += "\nВы выбрали путь мести. ⚔️";
     }
 
-    // Устанавливаем текст на экран
     endingText->setText(endingMessage);
 
-    // Кнопки для перезапуска и выхода
     QPushButton* restartButton = new QPushButton("Начать заново");
     restartButton->setStyleSheet(
         "QPushButton {"
@@ -571,7 +540,7 @@ void RomanceClub::showEnding(const QJsonObject& ending)
         QApplication::quit();
     });
 
-    // Создаём лэйаут для отображения концовки
+    
     QVBoxLayout *endingLayout = new QVBoxLayout();
     endingLayout->addWidget(endingTitle);
     endingLayout->addWidget(endingText);
