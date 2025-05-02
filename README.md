@@ -1,3 +1,5 @@
+![RomanceClub](https://github.com/user-attachments/assets/b2b7e3fa-ebc9-40f7-95a4-9066f993a15d)
+
 # Romance Club Visual Novel
  **Интерактивная визуальная новелла с ветвящимся сюжетом**
 
@@ -14,3 +16,6 @@
 1. Создайте изображение фона в папке /resources/backgrounds.
 2. Добавьте описание сцены в файл story.json.
 3. Укажите пути к изображениям в файл romanceclub.qrc.
+
+## Музыка
+Есть музыка Установите модуль мультимедии для QT 5. 
