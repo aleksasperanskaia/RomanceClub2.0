@@ -58,7 +58,7 @@ RomanceClub::RomanceClub(QWidget *parent) : QMainWindow(parent)
 void RomanceClub::setupAudio()
 {
     mediaPlayer = new QMediaPlayer(this);
-    mediaPlayer->setMedia(QUrl(":/music/background.mp3"));
+    mediaPlayer->setMedia(QUrl(":/music/music/background.mp3"));
     mediaPlayer->setVolume(50);
 
     // Бесконечное повторение
