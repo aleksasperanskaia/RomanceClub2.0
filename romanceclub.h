@@ -2,15 +2,14 @@
 #define ROMANCECLUB_H
 
 #include <QMainWindow>
-#include <QStackedWidget>
-#include <QJsonArray>
-#include <QHash>
-#include <QSet>
 #include <QMediaPlayer>
-#include <QAudioOutput>
+#include <QMap>
+#include <QSet>
+#include <QPushButton>
+#include <QJsonArray>
 
+class QStackedWidget;
 class QLabel;
-class QPushButton;
 class QVBoxLayout;
 
 class RomanceClub : public QMainWindow
@@ -23,22 +22,22 @@ public:
 
 private slots:
     void startGame();
-    void showNextScene();
-    void showEnding(const QJsonObject& ending);
     void restartGame();
 
 private:
-    QSet<QString> madeChoices;
-
+    void setupAudio();
     void setupWelcomeScreen();
     void setupGameScreen();
     void setupEndingScreen();
     void loadGameData();
-    QJsonObject findSceneById(const QString& sceneId);
+    void showNextScene();
+    void showEnding(const QJsonObject& ending);
     void updateStats(const QJsonObject& consequences);
-    void setupAudio();
+    QJsonObject findSceneById(const QString& sceneId);
 
     QStackedWidget *stack;
+    QMediaPlayer *mediaPlayer;
+
     QWidget *welcomeScreen;
     QWidget *gameScreen;
     QWidget *endingScreen;
@@ -47,19 +46,20 @@ private:
     QLabel *characterLabel;
     QLabel *textLabel;
     QLabel *statsLabel;
-    QVBoxLayout *choicesLayout;
-
     QLabel *endingBackground;
     QLabel *endingTitle;
     QLabel *endingText;
+
+    QVBoxLayout *choicesLayout;
     QPushButton *restartButton;
+
+    QMap<QString, QString> characterImages;
+    QMap<QString, int> stats;
+    QSet<QString> madeChoices;
 
     QJsonArray storyScenes;
     QJsonArray endings;
     QString currentSceneId;
-    QHash<QString, QString> characterImages;
-    QHash<QString, int> stats;
-
-    QMediaPlayer *mediaPlayer;
-    QAudioOutput *audioOutput;
 };
+
+#endif // ROMANCECLUB_H
