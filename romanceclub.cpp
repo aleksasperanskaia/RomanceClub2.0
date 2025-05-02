@@ -56,16 +56,31 @@ RomanceClub::RomanceClub(QWidget *parent) : QMainWindow(parent)
 void RomanceClub::setupAudio()
 {
     mediaPlayer = new QMediaPlayer(this);
-    mediaPlayer->setMedia(QUrl(":/music/music/background.mp3"));
-    mediaPlayer->setVolume(50);
+    QString audioPath = "qrc:/music/music/background.wav";
+    QString checkPath = ":/music/music/background.wav";
 
-    connect(mediaPlayer, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State state) {
-        if (state == QMediaPlayer::StoppedState) {
-            mediaPlayer->play();
+    if (QFile::exists(checkPath)) {
+        qDebug() << "Аудиофайл найден по пути:" << checkPath;
+
+        mediaPlayer->setMedia(QUrl(audioPath));
+        mediaPlayer->setVolume(50);
+
+        connect(mediaPlayer, &QMediaPlayer::stateChanged, this, [this](QMediaPlayer::State state) {
+            if (state == QMediaPlayer::StoppedState) {
+                mediaPlayer->play();
+            }
+        });
+
+        mediaPlayer->play();
+
+        if (mediaPlayer->error() != QMediaPlayer::NoError) {
+            qDebug() << "Ошибка воспроизведения:" << mediaPlayer->errorString();
         }
-    });
-
-    mediaPlayer->play();
+    } else {
+        qDebug() << "Файл не найден! Проверьте:";
+        qDebug() << "Ожидаемый путь в ресурсах:" << checkPath;
+        qDebug() << "Физический путь в проекте: music/background.wav";
+    }
 }
 
 void RomanceClub::setupWelcomeScreen()
