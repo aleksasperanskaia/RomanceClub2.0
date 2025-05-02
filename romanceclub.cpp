@@ -56,8 +56,8 @@ RomanceClub::RomanceClub(QWidget *parent) : QMainWindow(parent)
 void RomanceClub::setupAudio()
 {
     mediaPlayer = new QMediaPlayer(this);
-    QString audioPath = "qrc:/music/music/background.wav";
-    QString checkPath = ":/music/music/background.wav";
+    QString audioPath = "qrc:/music/music/background.mp3";
+    QString checkPath = ":/music/music/background.mp3";
 
     if (QFile::exists(checkPath)) {
         qDebug() << "Аудиофайл найден по пути:" << checkPath;
