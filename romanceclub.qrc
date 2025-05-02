@@ -32,6 +32,6 @@
         <file>characters/madina.png</file>
     </qresource>
     <qresource prefix="/music">
-        <file>music/background.mp3</file>
+        <file>music/background.wav</file>
     </qresource>
 </RCC>
