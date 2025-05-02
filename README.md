@@ -18,4 +18,48 @@
 3. Укажите пути к изображениям в файл romanceclub.qrc.
 
 ## Музыка
-Есть музыка Установите модуль мультимедии для QT 5. 
+Есть музыка. Установите модуль мультимедии для QT 5. 
+
+## Требования
+
+Qt5 (установленный и настроенный).
+Компилятор C++ (GCC, MSVC или Clang).
+Qt Creator (рекомендуется для удобной разработки).
+
+## 📥 Установка и запуск  
+
+### Windows  
+ Скачайте готовый `.e из релизов. 
+ Запустите файл и играйте!  
+
+### Linux  
+1. Установите зависимости:  
+   ```bash
+   sudo apt update
+   sudo apt install qtbase5-dev qt5-make
+   sudo apt install qtmultimedia5-dev
+   ```
+2. Склонируйте репозиторий:  
+   ```bash
+   git clone https://github.com/RomanceClub2.0/RomanceClubv2
+   ```
+3. Зайдите в папку проекта.  
+   ```bash
+   cd RomanceClubv2
+   ```
+4. Введите следующие команды.
+   ```bash
+   qmake RomanceClubv2.pro
+   make
+   ./RomanceClubv2
+   ```
+### Linux (Сборка через Qt Creator)
+1. Откройте RomanceClubv2.pro
+2. Нажмите на Run(или Ctrl+R)
+3. При необходимости установите multidedia
+   ```bash
+   sudo apt update
+   sudo apt install qtbase5-dev qt5-make
+   sudo apt install qtmultimedia5-dev
+   ```
+---
