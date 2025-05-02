@@ -79,7 +79,7 @@ void RomanceClub::setupAudio()
     } else {
         qDebug() << "Файл не найден! Проверьте:";
         qDebug() << "Ожидаемый путь в ресурсах:" << checkPath;
-        qDebug() << "Физический путь в проекте: music/background.wav";
+        qDebug() << "Физический путь в проекте: music/background.mp3";
     }
 }
 
